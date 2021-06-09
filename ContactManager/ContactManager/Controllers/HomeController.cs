@@ -24,20 +24,33 @@ namespace ContactManager.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-
-        [HttpPost]
-        public IActionResult Index(IFormFile postedFile)
-        {
-            var employees = employeeService.GetAllEmployees(postedFile);
+            var employees = employeeService.GetAllItemsAsync();
 
             var emp = new EmployeesViewModel
             {
                 employeesViewModel = employees
             };
 
+            return View(emp);
+        }
+
+
+        [HttpPost]
+        public IActionResult Index(IFormFile postedFile)
+        {
+            string csvData = employeeService.GetDataFromFile(postedFile);
+
+            var employees = employeeService.GetAllEmployees(csvData);
+
+            var emp = new EmployeesViewModel
+            {
+                employeesViewModel = employees
+            };
+
+            //TempData["mydata"] = csvData;
+
+
+            //return RedirectToAction(nameof(Index));
             return View(emp);
         }
 

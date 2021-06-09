@@ -37,6 +37,10 @@ namespace ContactManager.Services
             await _context.SaveChangesAsync();
         }
 
+        public List<Employee> GetAllItemsAsync()
+        {
+            return DbSet.ToList();
+        }
 
 
         public string GetDataFromFile(IFormFile postedFile)
@@ -58,17 +62,17 @@ namespace ContactManager.Services
                     postedFile.CopyTo(stream);
                 }
 
-                csvData = System.IO.File.ReadAllText(filePath);
+                csvData = File.ReadAllText(filePath);
             }
 
             return csvData;
         }
 
-        public List<Employee> GetAllEmployees(IFormFile postedFile)
+        public List<Employee> GetAllEmployees(string csvData)
         {
-            if(postedFile != null)
+            if(csvData != null)
             {
-                string csvData = GetDataFromFile(postedFile);
+                //string csvData = GetDataFromFile(postedFile);
                 List<Employee> employees = new List<Employee>();
 
                 bool firstRow = true;

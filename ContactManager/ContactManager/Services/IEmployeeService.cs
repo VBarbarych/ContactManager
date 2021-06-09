@@ -13,7 +13,11 @@ namespace ContactManager.Services
 
         Task DeleteItemAsync(Employee entity);
 
-        List<Employee> GetAllEmployees(IFormFile postedFile);
+        List<Employee> GetAllItemsAsync();
+
+        string GetDataFromFile(IFormFile postedFile);
+
+        List<Employee> GetAllEmployees(string csvData);
 
         Task<Employee> GetItemByIdAsync(int? id);
 
