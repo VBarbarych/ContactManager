@@ -1,6 +1,9 @@
 ﻿using ContactManager.Models;
+using ContactManager.Services;
+using ContactManager.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,17 +14,32 @@ namespace ContactManager.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IEmployeeService employeeService { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IEmployeeService _employeeService)
         {
-            _logger = logger;
+            employeeService = _employeeService;
         }
 
         public IActionResult Index()
         {
             return View();
         }
+
+
+        [HttpPost]
+        public IActionResult Index(IFormFile postedFile)
+        {
+            var employees = employeeService.GetAllEmployees(postedFile);
+
+            var emp = new EmployeesViewModel
+            {
+                employeesViewModel = employees
+            };
+
+            return View(emp);
+        }
+
 
         public IActionResult Privacy()
         {

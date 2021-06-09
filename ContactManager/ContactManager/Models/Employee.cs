@@ -16,7 +16,7 @@ namespace ContactManager.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Birth Date is required")]
-        [DisplayFormat(DataFormatString = "{0: dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0: dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
 
         public bool IsMarried { get; set; }

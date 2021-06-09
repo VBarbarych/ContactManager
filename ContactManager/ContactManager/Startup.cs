@@ -1,4 +1,5 @@
 using ContactManager.Data;
+using ContactManager.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,7 @@ namespace ContactManager
         {
             services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
+            services.AddScoped(typeof(IEmployeeService), typeof(EmployeeService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
