@@ -7,75 +7,73 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Index</title>
-    </head>
-    <body>
-        <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">
-            <input type="file" name="postedFile" />
-            <input type="submit" value="Import" />
-        </form>
-        @if (Model != null)
-        {
-            <div class="col-md-12">
-                <div >
-                    <div >
-                        <table >
-                            <thead>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">
+        <input type="file" name="postedFile" />
+        <input type="submit" value="Import" />
+    </form>
+    @if (Model != null)
+    {
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body table-responsive">
+                    <table id="example0" class="table-bordered display">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>DateOfBirth</th>
+                                <th>IsMarried</th>
+                                <th>Phone</th>
+                                <th>Salary</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.employeesViewModel)
+                            {
                                 <tr>
-                                    <th>Name</th>
-                                    <th>DateOfBirth</th>
-                                    <th>IsMarried</th>
-                                    <th>Phone</th>
-                                    <th>Salary</th>
-                                    <th></th>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsMarried)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Salary)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.employeesViewModel)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DateOfBirth)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IsMarried)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Phone)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Salary)
-                                        </td>
-                                        <td>
-                                            @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                            @{
-                                                if (item.BookingStatus.Id == 1)
-                                                {
-                                                    <a asp-action="Create" asp-controller="RoomBookings" asp-route-roomID="@item.Id">Book </a>
-                                                }
-                                                else
-                                                {
-                                                    <span>Booked |</span>
-
-                                                }
-                                            }
-                                            <a asp-action="Delete" data-room-id="@item.Id" data-room-number="@item.Number" data-toggle="modal" data-target="#DeleteModal">Delete</a>*@
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
-         }
-    </body>
+        </div>
+    }
+</body>
 </html>
 
-      
+@section Scripts {
+
+    <script src="~/Scripts/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example0').DataTable();
+        });
+    </script>
+
+}
