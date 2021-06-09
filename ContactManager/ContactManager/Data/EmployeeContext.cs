@@ -11,7 +11,7 @@ namespace ContactManager.Data
     {
         public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options)
         {
-
+            //Database.EnsureCreated();
         }
 
         public DbSet<Employee> Employees { get; set; }
