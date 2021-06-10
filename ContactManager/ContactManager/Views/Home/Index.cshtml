@@ -3,75 +3,61 @@
 
 <div>
 
-<div style="margin-bottom: 50px; margin-top: 25px">
+    <div style="margin-bottom: 50px; margin-top: 25px">
 
-    <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">
-        <input  type="file" name="postedFile" />
-        <input type="submit" value="Import" />
-    </form>
-</div>
-@if (Model != null)
-{
-    <div class="container-padding">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-body table-responsive">
-                        <table  class="table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>DateOfBirth</th>
-                                    <th>IsMarried</th>
-                                    <th>Phone</th>
-                                    <th>Salary</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.employeesViewModel)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.DateOfBirth)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IsMarried)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Phone)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Salary)
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>      
-    }
+        <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">
+            <input  type="file" name="postedFile" />
+            <input type="submit" value="Import" />
+        </form>
+    </div>
+    @if (Model != null)
+    {
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <table id="myTable" class="table">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Name</th>
+                    <th onclick="sortTable(1)">DateOfBirth</th>
+                    <th onclick="sortTable(2)">IsMarried</th>
+                    <th onclick="sortTable(3)">Phone</th>
+                    <th onclick="sortTable(4)">Salary</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.employeesViewModel)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfBirth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsMarried)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salary)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+                   
+     }
 </div>
 
 
-@*@section Scripts {
+@section Scripts {
 
-    <script src="~/Scripts/datatables.min.js"></script>
+    <script src="~/js/site.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('#example0').DataTable();
-        });
-    </script>
-
-}*@
+}
