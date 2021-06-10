@@ -7,7 +7,7 @@
 
         <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">
             <input  type="file" name="postedFile" />
-            <input type="submit" value="Import" />
+            <input type="submit" value="Import" class="btn btn-primary"/>
         </form>
     </div>
     @if (Model != null)
@@ -17,8 +17,8 @@
             <thead>
                 <tr>
                     <th id="th1" onclick="sortTable(0)">Name</th>
-                    <th id="th1" onclick="sortTable(1)">DateOfBirth</th>
-                    <th id="th1" onclick="sortTable(2)">IsMarried</th>
+                    <th id="th1" onclick="sortTable(1)">Birth Date</th>
+                    <th id="th1" onclick="sortTable(2)">Is Married?</th>
                     <th id="th1" onclick="sortTable(3)">Phone</th>
                     <th id="th1" onclick="sortTable(4)">Salary</th>
                     <th></th>
@@ -34,8 +34,17 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.DateOfBirth)
                         </td>
+
                         <td>
-                            @Html.DisplayFor(modelItem => item.IsMarried)
+                            @if (item.IsMarried == true)
+                            {
+                                <p>Yes</p>
+
+                            }
+                            else
+                            {
+                                <p>No</p>
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Phone)
@@ -89,7 +98,7 @@
 
             //get data-id attribute of the clicked element
             var ID = $(e.relatedTarget).data('id');
-            var name = $(e.relatedTarget).data('room-name');
+            var name = $(e.relatedTarget).data('name');
             var deleteMessage = "Are you sure you want to delete employee: " + name + "?";
             $('#DeleteConfirmation').html(deleteMessage);
             $(e.currentTarget).find('input[name="id"]').val(ID);

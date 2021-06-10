@@ -46,11 +46,6 @@ namespace ContactManager.Controllers
             {
                 employeesViewModel = employees
             };
-
-            //TempData["mydata"] = csvData;
-
-
-            //return RedirectToAction(nameof(Index));
             return View(emp);
         }
 

@@ -72,7 +72,6 @@ namespace ContactManager.Services
         {
             if(csvData != null)
             {
-                //string csvData = GetDataFromFile(postedFile);
                 List<Employee> employees = new List<Employee>();
 
                 bool firstRow = true;
@@ -87,7 +86,7 @@ namespace ContactManager.Services
                         }
                         else
                         {
-                            var rowData = row.Trim().Split(',');
+                            var rowData = row.Trim().Split(';');
                             var employee = new Employee
                             {
                                 //Id = i,
