@@ -69,3 +69,86 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+#myInput {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#myTable tr.header, #myTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+th {
+    cursor: pointer;
+}
+
+#myTable {
+    width: 100%;
+    margin: 0 auto;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
+    /*
+   * Header and footer styles
+   */
+    /*
+   * Body styles
+   */
+}
+
+#myTable thead th,
+#myTable tfoot th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+#myTable thead th,
+#myTable thead td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #ccc;
+}
+
+    #myTable thead th:active,
+    #myTable thead td:active {
+        outline: none;
+    }
+
+#myTable tfoot th,
+#myTable tfoot td {
+    padding: 16px 18px 20px 18px;
+    border-top: 1px solid #ccc;
+}
+
+#myTable thead #th1 {
+    background: url("../img/datatables/sort_both.png") no-repeat center left;
+}
+
+#myTable tbody tr {
+    background-color: white;
+}
+
+    #myTable tbody tr.selected {
+        background-color: #b0bed9;
+    }
+
+#myTable tbody th,
+#myTable tbody td {
+    padding: 14px 10px;
+}
+
+#myTable,
+#myTable th,
+#myTable td {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
